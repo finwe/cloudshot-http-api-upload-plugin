@@ -1,0 +1,25 @@
+
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.31005.135
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HttpApiUploadPlugin", "HttpApiUploadPlugin\HttpApiUploadPlugin.csproj", "{19577DE2-F9C4-4979-84E0-9C4AAA260AE1}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{19577DE2-F9C4-4979-84E0-9C4AAA260AE1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{19577DE2-F9C4-4979-84E0-9C4AAA260AE1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{19577DE2-F9C4-4979-84E0-9C4AAA260AE1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{19577DE2-F9C4-4979-84E0-9C4AAA260AE1}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {96D203E2-155E-4A45-8418-03973D340DA3}
+	EndGlobalSection
+EndGlobal
