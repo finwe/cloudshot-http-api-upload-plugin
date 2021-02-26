@@ -37,6 +37,7 @@ namespace HttpApiUploadPlugin
       this.copyTypeHeader = new CloudShot.Core.Controls.HeaderLabel();
       this.copyStyleDropDown = new System.Windows.Forms.ComboBox();
       this.helpTextLabel = new System.Windows.Forms.Label();
+      this.urlLabel = new System.Windows.Forms.LinkLabel();
       this.tableLayout.SuspendLayout();
       this.SuspendLayout();
       // 
@@ -65,16 +66,18 @@ namespace HttpApiUploadPlugin
       this.tableLayout.Controls.Add(this.copyTypeHeader, 0, 2);
       this.tableLayout.Controls.Add(this.copyStyleDropDown, 0, 3);
       this.tableLayout.Controls.Add(this.helpTextLabel, 0, 4);
-      this.tableLayout.Dock = System.Windows.Forms.DockStyle.Fill;
+      this.tableLayout.Controls.Add(this.urlLabel, 0, 5);
+      this.tableLayout.Dock = System.Windows.Forms.DockStyle.Top;
       this.tableLayout.Location = new System.Drawing.Point(0, 0);
       this.tableLayout.Name = "tableLayout";
-      this.tableLayout.RowCount = 5;
+      this.tableLayout.RowCount = 6;
+      this.tableLayout.RowStyles.Add(new System.Windows.Forms.RowStyle());
+      this.tableLayout.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 50F));
+      this.tableLayout.RowStyles.Add(new System.Windows.Forms.RowStyle());
+      this.tableLayout.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 50F));
       this.tableLayout.RowStyles.Add(new System.Windows.Forms.RowStyle());
       this.tableLayout.RowStyles.Add(new System.Windows.Forms.RowStyle());
-      this.tableLayout.RowStyles.Add(new System.Windows.Forms.RowStyle());
-      this.tableLayout.RowStyles.Add(new System.Windows.Forms.RowStyle());
-      this.tableLayout.RowStyles.Add(new System.Windows.Forms.RowStyle());
-      this.tableLayout.Size = new System.Drawing.Size(435, 306);
+      this.tableLayout.Size = new System.Drawing.Size(435, 420);
       this.tableLayout.TabIndex = 21;
       // 
       // apiUrlHeader
@@ -94,7 +97,7 @@ namespace HttpApiUploadPlugin
       // 
       this.copyTypeHeader.Dock = System.Windows.Forms.DockStyle.Top;
       this.copyTypeHeader.Font = new System.Drawing.Font("Segoe UI Semibold", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-      this.copyTypeHeader.Location = new System.Drawing.Point(0, 58);
+      this.copyTypeHeader.Location = new System.Drawing.Point(0, 82);
       this.copyTypeHeader.Margin = new System.Windows.Forms.Padding(0);
       this.copyTypeHeader.Name = "copyTypeHeader";
       this.copyTypeHeader.Padding = new System.Windows.Forms.Padding(4, 0, 0, 0);
@@ -110,7 +113,7 @@ namespace HttpApiUploadPlugin
             "URL",
             "IMG tag",
             "IMG tag with empty WIDTH attribute"});
-      this.copyStyleDropDown.Location = new System.Drawing.Point(3, 93);
+      this.copyStyleDropDown.Location = new System.Drawing.Point(3, 117);
       this.copyStyleDropDown.Name = "copyStyleDropDown";
       this.copyStyleDropDown.Size = new System.Drawing.Size(429, 21);
       this.copyStyleDropDown.TabIndex = 21;
@@ -120,12 +123,23 @@ namespace HttpApiUploadPlugin
       this.helpTextLabel.AutoSize = true;
       this.helpTextLabel.Font = new System.Drawing.Font("Segoe UI", 9F);
       this.helpTextLabel.ForeColor = System.Drawing.Color.Gray;
-      this.helpTextLabel.Location = new System.Drawing.Point(10, 137);
+      this.helpTextLabel.Location = new System.Drawing.Point(10, 184);
       this.helpTextLabel.Margin = new System.Windows.Forms.Padding(10, 20, 3, 20);
       this.helpTextLabel.Name = "helpTextLabel";
       this.helpTextLabel.Size = new System.Drawing.Size(356, 150);
       this.helpTextLabel.TabIndex = 22;
       this.helpTextLabel.Text = resources.GetString("helpTextLabel.Text");
+      // 
+      // urlLabel
+      // 
+      this.urlLabel.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+      this.urlLabel.Location = new System.Drawing.Point(10, 374);
+      this.urlLabel.Margin = new System.Windows.Forms.Padding(10, 20, 3, 20);
+      this.urlLabel.Name = "urlLabel";
+      this.urlLabel.Size = new System.Drawing.Size(422, 23);
+      this.urlLabel.TabIndex = 23;
+      this.urlLabel.TabStop = true;
+      this.urlLabel.Text = "https://github.com/finwe/cloudshot-http-api-upload-plugin";
       // 
       // SettingsControl
       // 
@@ -134,7 +148,7 @@ namespace HttpApiUploadPlugin
       this.Controls.Add(this.tableLayout);
       this.Margin = new System.Windows.Forms.Padding(0);
       this.Name = "SettingsControl";
-      this.Size = new System.Drawing.Size(435, 306);
+      this.Size = new System.Drawing.Size(435, 420);
       this.tableLayout.ResumeLayout(false);
       this.tableLayout.PerformLayout();
       this.ResumeLayout(false);
@@ -149,5 +163,6 @@ namespace HttpApiUploadPlugin
     private CloudShot.Core.Controls.HeaderLabel copyTypeHeader;
     private System.Windows.Forms.ComboBox copyStyleDropDown;
     private System.Windows.Forms.Label helpTextLabel;
+    private System.Windows.Forms.LinkLabel urlLabel;
   }
 }
