@@ -82,11 +82,11 @@ namespace HttpApiUploadPlugin
 
     public static string GetUrlAsImgTag(string url)
     {
-      return "<img src\"=" + url + "\">";
+      return "<img src=\"" + url + "\">";
     }
     public static string GetUrlAsImgTagWithWidth(string url)
     {
-      return "<img src\"=" + url + "\" width=\"\">";
+      return "<img src=\"" + url + "\" width=\"\">";
     }
 
     public override ISettingsControl CreateSettingsControl() => new SettingsControl(this);
