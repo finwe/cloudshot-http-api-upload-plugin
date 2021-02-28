@@ -6,8 +6,8 @@
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProjectGuid>{19577DE2-F9C4-4979-84E0-9C4AAA260AE1}</ProjectGuid>
     <OutputType>Library</OutputType>
-    <RootNamespace>HttpApiPlugin</RootNamespace>
-    <AssemblyName>HttpApiPlugin</AssemblyName>
+    <RootNamespace>HttpApiUploadPlugin</RootNamespace>
+    <AssemblyName>HttpApiUploadPlugin</AssemblyName>
     <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <Deterministic>true</Deterministic>
@@ -40,6 +40,7 @@
     <Reference Include="System.Windows.Forms" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="EnumExtensions.cs" />
     <Compile Include="LocalResources.Designer.cs">
       <DependentUpon>LocalResources.resx</DependentUpon>
       <AutoGen>True</AutoGen>
