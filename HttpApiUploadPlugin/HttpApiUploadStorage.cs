@@ -11,11 +11,11 @@ using CloudShot.Core.Utils;
 
 namespace HttpApiUploadPlugin
 {
-  public class Storage : ImageStorage<PluginSettings>
+  public class HttpApiUploadStorage : ImageStorage<PluginSettings>
   {
     public override Image Logo { get; }
 
-    public Storage() : base("HTTP API Upload", "Upload image to a generic HTTP API")
+    public HttpApiUploadStorage() : base("HTTP API Upload", "Upload image to a generic HTTP API")
     {
       var manager = new DpiResourcesManager(LocalResources.ResourceManager);
       Logo = manager.GetImage(nameof(LocalResources.folder));

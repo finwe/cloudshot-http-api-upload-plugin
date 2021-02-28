@@ -21,14 +21,14 @@ namespace HttpApiUploadPlugin
       }
     }
 
-    private readonly Storage _storage;
+    private readonly HttpApiUploadStorage _storage;
     private readonly List<CopyStyleItem> _copyStyleItems = new List<CopyStyleItem>();
 
     public IImageStorage Storage => _storage;
 
     public Control Control => this;
 
-    public SettingsControl(Storage storage)
+    public SettingsControl(HttpApiUploadStorage storage)
     {
       _storage = storage;
 

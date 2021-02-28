@@ -41,6 +41,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="EnumExtensions.cs" />
+    <Compile Include="HttpApiUploadStorage.cs" />
     <Compile Include="LocalResources.Designer.cs">
       <DependentUpon>LocalResources.resx</DependentUpon>
       <AutoGen>True</AutoGen>
@@ -53,7 +54,6 @@
       <DependentUpon>SettingsControl.cs</DependentUpon>
     </Compile>
     <Compile Include="PluginSettings.cs" />
-    <Compile Include="Storage.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Service Include="{94E38DFF-614B-4cbd-B67C-F211BB35CE8B}" />
   </ItemGroup>
