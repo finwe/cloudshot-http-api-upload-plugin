@@ -7,8 +7,8 @@ Built on [example plugin](https://github.com/name1ess0ne/CloudShot.Plugins/tree/
 ## How to add the plugin to CloudShot
 
 1. Download and install CloudShot from https://cloudshot.com/download.html
-2. Copy `HttpApiPlugin.dll` from the [latest release](https://github.com/finwe/cloudshot-http-api-upload-plugin/releases)
-	to `%USERPROFILE%/Documents/CloudShot/Plugins/HttpApiPlugin` folder.
+2. Copy `HttpApiUploadPlugin.dll` from the [latest release](https://github.com/finwe/cloudshot-http-api-upload-plugin/releases)
+	to `%USERPROFILE%/Documents/CloudShot/Plugins/HttpApiUploadPlugin` folder.
 	When updating the plugin with newer version, close CloudShot first.
 3. Restart CloudShot. You should see **HTTP API Upload** item in Settings and also in Editor as a destination for screenshots upload.
 
