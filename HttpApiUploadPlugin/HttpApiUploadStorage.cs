@@ -11,15 +11,13 @@ using CloudShot.Core.Utils;
 
 namespace HttpApiUploadPlugin
 {
-  public class Storage : ImageStorage<PluginSettings>
+  public class HttpApiUploadStorage : ImageStorage<PluginSettings>
   {
     public override Image Logo { get; }
 
-    private static readonly HttpClient client = new HttpClient();
-
-    public Storage() : base("HTTP API Upload", "Upload image to a generic HTTP API")
+    public HttpApiUploadStorage() : base("HTTP API Upload", "Upload image to a generic HTTP API")
     {
-      DpiResourcesManager manager = new DpiResourcesManager(LocalResources.ResourceManager);
+      var manager = new DpiResourcesManager(LocalResources.ResourceManager);
       Logo = manager.GetImage(nameof(LocalResources.folder));
     }
 
@@ -27,51 +25,51 @@ namespace HttpApiUploadPlugin
     {
       PluginSettings settings = GetSettings();
 
-      if (settings.ApiUrl == "")
+      if (string.IsNullOrEmpty(settings.ApiUrl))
       {
         return new StorageSaveResult(SavingResultCode.RequiresOptionsSetup, "API URL has to be set");
       }
 
       var values = new Dictionary<string, string>
       {
-          { "dataurl", GetDataURL(data, shotName) }
+        {"dataurl", GetDataURL(data, shotName)}
       };
-
-      var content = new FormUrlEncodedContent(values);
-
-      client.DefaultRequestHeaders.Accept.Clear();
-      client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("text/plain"));
-
-      var response = await client.PostAsync(settings.ApiUrl, content);
 
       try
       {
-        response.EnsureSuccessStatusCode();
-        var responseString = await response.Content.ReadAsStringAsync();
-
-        string stringToClipboard;
-
-        switch (settings.CopyStyle)
+        using (var client = new HttpClient())
         {
-          case 1:
-            stringToClipboard = GetUrlAsImgTag(responseString);
-            break;
-          case 2:
-            stringToClipboard = GetUrlAsImgTagWithWidth(responseString);
-            break;
-          case 0:
-          default:
-            stringToClipboard = responseString;
-            break;
-        }
+          var content = new FormUrlEncodedContent(values);
+          client.DefaultRequestHeaders.Accept.Clear();
+          client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("text/plain"));
 
-        return new StorageSaveResult(shotName, stringToClipboard);
+          HttpResponseMessage response = await client.PostAsync(settings.ApiUrl, content);
+
+          response.EnsureSuccessStatusCode();
+
+          string responseString = await response.Content.ReadAsStringAsync();
+          string stringToClipboard;
+
+          switch (settings.CopyStyle)
+          {
+            case CopyStyle.ImgTag:
+              stringToClipboard = GetUrlAsImgTag(responseString);
+              break;
+            case CopyStyle.ImgTagWithEmptyWidth:
+              stringToClipboard = GetUrlAsImgTagWithWidth(responseString);
+              break;
+            default:
+              stringToClipboard = responseString;
+              break;
+          }
+
+          return new StorageSaveResult(shotName, stringToClipboard);
+        }
       }
       catch (HttpRequestException ex)
       {
         return new StorageSaveResult(SavingResultCode.Failed, ex);
       }
-
     }
 
     public static string GetDataURL(byte[] data, string shotName)
@@ -84,6 +82,7 @@ namespace HttpApiUploadPlugin
     {
       return "<img src=\"" + url + "\">";
     }
+
     public static string GetUrlAsImgTagWithWidth(string url)
     {
       return "<img src=\"" + url + "\" width=\"\">";

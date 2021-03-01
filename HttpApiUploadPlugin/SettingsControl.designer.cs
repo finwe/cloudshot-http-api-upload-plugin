@@ -52,9 +52,10 @@ namespace HttpApiUploadPlugin
       // apiUrlTextBox
       // 
       this.apiUrlTextBox.Dock = System.Windows.Forms.DockStyle.Fill;
+      this.apiUrlTextBox.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
       this.apiUrlTextBox.Location = new System.Drawing.Point(3, 35);
       this.apiUrlTextBox.Name = "apiUrlTextBox";
-      this.apiUrlTextBox.Size = new System.Drawing.Size(429, 20);
+      this.apiUrlTextBox.Size = new System.Drawing.Size(429, 23);
       this.apiUrlTextBox.TabIndex = 20;
       // 
       // tableLayout
@@ -109,13 +110,11 @@ namespace HttpApiUploadPlugin
       // copyStyleDropDown
       // 
       this.copyStyleDropDown.Dock = System.Windows.Forms.DockStyle.Fill;
-      this.copyStyleDropDown.Items.AddRange(new object[] {
-            "URL",
-            "IMG tag",
-            "IMG tag with empty WIDTH attribute"});
+      this.copyStyleDropDown.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+      this.copyStyleDropDown.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
       this.copyStyleDropDown.Location = new System.Drawing.Point(3, 117);
       this.copyStyleDropDown.Name = "copyStyleDropDown";
-      this.copyStyleDropDown.Size = new System.Drawing.Size(429, 21);
+      this.copyStyleDropDown.Size = new System.Drawing.Size(429, 23);
       this.copyStyleDropDown.TabIndex = 21;
       // 
       // helpTextLabel
@@ -140,6 +139,7 @@ namespace HttpApiUploadPlugin
       this.urlLabel.TabIndex = 23;
       this.urlLabel.TabStop = true;
       this.urlLabel.Text = "https://github.com/finwe/cloudshot-http-api-upload-plugin";
+      this.urlLabel.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.OnLinkClicked);
       // 
       // SettingsControl
       // 

@@ -1,4 +1,6 @@
 using System;
+using System.Collections.Generic;
+using System.Diagnostics;
 using System.Windows.Forms;
 using CloudShot.Core.Interfaces;
 
@@ -6,37 +8,59 @@ namespace HttpApiUploadPlugin
 {
   public partial class SettingsControl : UserControl, ISettingsControl
   {
-    private readonly Storage _storage;
+    private class CopyStyleItem
+    {
+      public CopyStyle CopyStyle { get; }
+
+      public string DisplayName { get; }
+
+      public CopyStyleItem(CopyStyle copyStyle)
+      {
+        CopyStyle = copyStyle;
+        DisplayName = copyStyle.GetDescription();
+      }
+    }
+
+    private readonly HttpApiUploadStorage _storage;
+    private readonly List<CopyStyleItem> _copyStyleItems = new List<CopyStyleItem>();
 
     public IImageStorage Storage => _storage;
 
     public Control Control => this;
 
-    public SettingsControl(Storage storage)
+    public SettingsControl(HttpApiUploadStorage storage)
     {
       _storage = storage;
 
+      foreach (CopyStyle value in Enum.GetValues(typeof(CopyStyle)))
+      {
+        _copyStyleItems.Add(new CopyStyleItem(value));
+      }
+
       InitializeComponent();
 
-      apiUrlTextBox.Text = "";
+      apiUrlTextBox.Text = string.Empty;
+      copyStyleDropDown.DataSource = _copyStyleItems;
+      copyStyleDropDown.ValueMember = nameof(CopyStyleItem.CopyStyle);
+      copyStyleDropDown.DisplayMember = nameof(CopyStyleItem.DisplayName);
     }
 
     public void Loading()
     {
       PluginSettings settings = _storage.GetSettings();
       apiUrlTextBox.Text = settings.ApiUrl;
-      copyStyleDropDown.SelectedIndex = settings.CopyStyle;
+      copyStyleDropDown.SelectedValue = settings.CopyStyle;
     }
 
     public bool ValidateData()
     {
-      Uri uriResult;
-      bool result = Uri.TryCreate(apiUrlTextBox.Text, UriKind.Absolute, out uriResult);
+      bool result = Uri.TryCreate(apiUrlTextBox.Text, UriKind.Absolute, out Uri _);
 
-      if (result || apiUrlTextBox.Text == "") {
+      if (result || string.IsNullOrEmpty(apiUrlTextBox.Text))
+      {
         return true;
       }
-       
+
       MessageBox.Show("Invalid URL", Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Error);
       apiUrlTextBox.Focus();
       return false;
@@ -46,10 +70,17 @@ namespace HttpApiUploadPlugin
     {
       PluginSettings settings = _storage.GetSettings();
       settings.ApiUrl = apiUrlTextBox.Text;
-      settings.CopyStyle = copyStyleDropDown.SelectedIndex;
+      settings.CopyStyle = (CopyStyle) copyStyleDropDown.SelectedValue;
       _storage.SaveSettings(settings);
     }
 
-    public void CancelClicked() { }
+    public void CancelClicked()
+    {
+    }
+
+    private void OnLinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+    {
+      Process.Start("https://github.com/finwe/cloudshot-http-api-upload-plugin");
+    }
   }
 }
