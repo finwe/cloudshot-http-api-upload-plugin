@@ -14,7 +14,7 @@ Built on [example plugin](https://github.com/name1ess0ne/CloudShot.Plugins/tree/
 
 ## API expectations
 
-This plugin sends a simple form-data HTTP POST request to the URL specified in plugin settings.
+This plugin sends a simple multipart HTTP POST request to the URL specified in plugin settings.
 The only field in the request is `dataurl` with Base64-encoded image contents.
 Accept header of the request is `text/plain`.
 

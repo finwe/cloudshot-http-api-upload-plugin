@@ -30,16 +30,15 @@ namespace HttpApiUploadPlugin
         return new StorageSaveResult(SavingResultCode.RequiresOptionsSetup, "API URL has to be set");
       }
 
-      var values = new Dictionary<string, string>
-      {
-        {"dataurl", GetDataURL(data, shotName)}
-      };
-
       try
       {
         using (var client = new HttpClient())
         {
-          var content = new FormUrlEncodedContent(values);
+          var content = new MultipartFormDataContent()
+          {
+            { new StringContent(GetDataURL(data, shotName)), "dataurl" }
+          };
+
           client.DefaultRequestHeaders.Accept.Clear();
           client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("text/plain"));
 

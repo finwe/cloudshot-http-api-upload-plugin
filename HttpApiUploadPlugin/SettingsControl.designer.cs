@@ -125,7 +125,7 @@ namespace HttpApiUploadPlugin
       this.helpTextLabel.Location = new System.Drawing.Point(10, 184);
       this.helpTextLabel.Margin = new System.Windows.Forms.Padding(10, 20, 3, 20);
       this.helpTextLabel.Name = "helpTextLabel";
-      this.helpTextLabel.Size = new System.Drawing.Size(356, 150);
+      this.helpTextLabel.Size = new System.Drawing.Size(368, 150);
       this.helpTextLabel.TabIndex = 22;
       this.helpTextLabel.Text = resources.GetString("helpTextLabel.Text");
       // 
